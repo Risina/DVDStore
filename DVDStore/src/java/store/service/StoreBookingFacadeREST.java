@@ -7,6 +7,7 @@ package store.service;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -25,8 +26,7 @@ import store.StoreBooking;
 @javax.ejb.Stateless
 @Path("store.storebooking")
 public class StoreBookingFacadeREST extends AbstractFacade<StoreBooking> {
-    @PersistenceContext(unitName = "DVDStorePU")
-    private EntityManager em;
+    private final EntityManager em = Persistence.createEntityManagerFactory("DVDStorePU").createEntityManager();
 
     public StoreBookingFacadeREST() {
         super(StoreBooking.class);
